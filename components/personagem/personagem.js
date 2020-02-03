@@ -1,15 +1,16 @@
 import React from 'react'
 import './styles.css'
 
-function Personagem({personagem}) {
+function Personagem({name, cor}) {
     return (
         <li className="personagem">
             <header>
                 <div className="personagem-info">
-                    <strong>{personagem.name}</strong>
+                    <strong>{name}</strong>
+                    <strong>{cor}</strong>
                 </div>
             </header>
         </li>
     )
 }
-export default Personagem
+export default personagem

@@ -18,8 +18,8 @@ function App() {
     <div id="app">
       <main>
         <ul>
-         {personagens.map((personagem) => (
-            <personagem key={personagem.name}>{personagem.name}</personagem>
+         {personagens.map((personagem, index) => (
+            <personagem key={index}>{personagem.name}, {personagem.eye_color}</personagem>
           ))}
         </ul>
       </main>
