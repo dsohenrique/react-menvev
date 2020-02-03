@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Personagem from '/personagem'
-import Api from './service/api';
+import Personagem from './personagem'
+import api from './service/api';
 
 function App() {
  
@@ -8,18 +8,18 @@ function App() {
 
   useEffect(() => {
     async function loadPersonagens() {
-      const response = await Api.get('/people/10');
-      setPersonagens(response.data);
+      const response = await api.get('people');
+      setPersonagens([...personagens, response.data]);
     }
-    loadDevs();
+    loadPersonagens();
   }, [])
  
   return (
     <div id="app">
       <main>
         <ul>
-         {personagens.map(personagem => (
-            <Personagem key={personagen.name} personagem={personagem} />
+         {personagens.map((personagem) => (
+            <p key={personagem.id}>{personagem.name}</p>
           ))}
         </ul>
       </main>

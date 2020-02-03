@@ -11,4 +11,4 @@ function Personagem({personagem}) {
         </li>
     )
 }
-export default Personagem
+export default Personagem;
