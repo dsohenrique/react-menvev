@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     async function loadPersonagens() {
-      const response = await api.get('people/10');
+      const response = await api.get('people');
       setPersonagens([...personagens, response.data]);
     }
     loadPersonagens();
