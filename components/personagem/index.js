@@ -1,5 +1,4 @@
 import React from 'react'
-import './styles.css'
 
 function Personagem({name, cor}) {
     return (
@@ -13,4 +12,4 @@ function Personagem({name, cor}) {
         </li>
     )
 }
-export default personagem
+export default Personagem
