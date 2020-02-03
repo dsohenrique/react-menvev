@@ -10,15 +10,14 @@ class App extends Component {
     };
   }
 
-  deletaPersonagemHandler = (indexPersonagem) => {
+  deletaPersonagemHandler = indexPersonagem => {
     const personagens = this.state.personagens;
     personagens.splice(indexPersonagem, 1);
-    this.setState({ personagens: personagens })
+    this.setState({ personagens: personagens });
   };
 
   async componentDidMount() {
     await api.get("people").then(response => {
-      console.log(response.data.results);
       this.setState({ personagens: response.data.results });
     });
   }
@@ -33,6 +32,7 @@ class App extends Component {
               .sort((a, b) => a.name > b.name == 1)
               .map((personagem, index) => (
                 <Personagem
+                  key={index}
                   click={() => this.deletaPersonagemHandler(index)}
                   nome={personagem.name}
                   cor={personagem.eye_color}
@@ -48,11 +48,9 @@ class App extends Component {
 class Personagem extends Component {
   render() {
     return (
-      <li className="personagem">
+      <li className="personagem" key={this.props.key}>
         <div className="personagem-info">
-          <strong style={{ color: this.props.cor }}>
-            {this.props.nome}
-          </strong>
+          <strong style={{ color: this.props.cor }}>{this.props.nome}</strong>
         </div>
         <div className="personagem-buttons">
           <button onClick={this.props.click}>Excluir</button>
