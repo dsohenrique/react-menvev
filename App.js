@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     async function loadPersonagens() {
-      const response = await api.get('people');
+      const response = await api.get('people/10');
       setPersonagens([...personagens, response.data]);
     }
     loadPersonagens();
@@ -19,7 +19,7 @@ function App() {
       <main>
         <ul>
          {personagens.map((personagem) => (
-            <p key={personagem.id}>{personagem.name}</p>
+            <p key={personagem.name}>{personagem.name}</p>
           ))}
         </ul>
       </main>
