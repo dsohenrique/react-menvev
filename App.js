@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Personagem from './personagem'
+import personagem from './components/personagem'
 import api from './service/api';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       <main>
         <ul>
          {personagens.map((personagem) => (
-            <p key={personagem.name}>{personagem.name}</p>
+            <personagem key={personagem.name}>{personagem.name}</personagem>
           ))}
         </ul>
       </main>
