@@ -11,6 +11,7 @@ function App() {
       const response = await api.get('people');
       setPersonagens([...personagens, response.data]);
     }
+    console.log(response.data);
     loadPersonagens();
   }, [])
  
