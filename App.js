@@ -3,43 +3,63 @@ import Personagem from "./components/personagem";
 import api from "./service/api";
 
 class App extends Component {
-
-constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
-      personagens: [],
-    }
+      personagens: []
+    };
   }
 
-  async componentDidMount() {
-    await api.get("people").then(
-      response => {
-        console.log(response.data.results);
-        this.setState({personagens: response.data.results});
-      }
-    )
+  deletaPersonagemHandler = (indexPersonagem) => {
+    const personagens = this.state.personagens;
+    personagens.splice(indexPersonagem, 1);
+    this.setState({ personagens: personagens })
   };
-  
-render(){
-  const { personagens } = this.state;
-  return (
-    <div id="app">
-      <main>
-        <ul>
-        {personagens
-            .sort((a, b) => a.name > b.name == 1)
-            .map((personagem, index) => (
-              <Personagem key={index}
-               personagem={personagem} 
-               />
-            ))}
-        </ul>
-      </main>
-    </div>
-  );
+
+  async componentDidMount() {
+    await api.get("people").then(response => {
+      console.log(response.data.results);
+      this.setState({ personagens: response.data.results });
+    });
+  }
+
+  render() {
+    const { personagens } = this.state;
+    return (
+      <div id="app">
+        <main>
+          <ul>
+            {this.state.personagens
+              .sort((a, b) => a.name > b.name == 1)
+              .map((personagem, index) => (
+                <Personagem
+                  click={() => this.deletaPersonagemHandler(index)}
+                  nome={personagem.name}
+                  cor={personagem.eye_color}
+                />
+              ))}
+          </ul>
+        </main>
+      </div>
+    );
+  }
 }
+
+class Personagem extends Component {
+  render() {
+    return (
+      <li className="personagem">
+        <div className="personagem-info">
+          <strong style={{ color: this.props.cor }}>
+            {this.props.nome}
+          </strong>
+        </div>
+        <div className="personagem-buttons">
+          <button onClick={this.props.click}>Excluir</button>
+        </div>
+      </li>
+    );
+  }
 }
 
 export default App;
-  /*
-            */
