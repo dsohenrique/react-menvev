@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Personagem from "./components/personagem";
 import api from "./service/api";
 
-function App() {
-  const [personagens, setPersonagens] = useState([]);
-  const [listaPersonagens, setListaPersonagens] = useState([]);
+class App extends Component {
 
-  useEffect(() => {
-    async function loadPersonagens() {
-      const response = await api.get("people");
-      setPersonagens(response.data.results);
-    }
-    loadPersonagens();
-  }, []);
+  state = {
+    personagens = [],
+  }
+
+  async componentDidMount() {
+    await api.get("people").then(
+      response => {
+        console.log(response.data.results);
+      }
+    )
+  };
+  
+render(){
   return (
     <div id="app">
       <main>
         <ul>
-          {personagens
-            .sort((a, b) => {
-              if (a.firstname < b.firstname) {
-                return -1;
-              }
-              if (a.firstname > b.firstname) {
-                return 1;
-              }
-              return 0;
-            })
+         /* {personagens
+            .sort((a, b) => a.name > b.name == 1)
             .map((personagem, index) => (
-              <Personagem key={index} personagem={personagem} />
-            ))}
+              <Personagem key={index}
+               personagem={personagem} 
+               />
+            ))}*/
         </ul>
       </main>
     </div>
   );
+}
 }
 
 export default App;
