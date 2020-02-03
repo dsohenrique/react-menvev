@@ -1,12 +1,11 @@
 import React from 'react'
 
-function Personagem({name, cor}) {
+function Personagem({personagem}) {
     return (
         <li className="personagem">
             <header>
                 <div className="personagem-info">
-                    <strong>{name}</strong>
-                    <strong>{cor}</strong>
+                    <strong>{personagem.name}</strong>
                 </div>
             </header>
         </li>

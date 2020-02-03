@@ -5,23 +5,36 @@ import api from './service/api';
 function App() {
  
   const [personagens, setPersonagens] = useState([])
+  let listaPersonagens = [];
 
-  const personagensFiltrados = ((personagens)=> personagens.filter((value, index) => index < 10));
-  
+
+  function filtrarPersonagens(personagens){
+    personagens.forEach((persongem, index) => {
+      console.log(personagem);
+      if(index <= 10 )
+        listaPersonagens.push(personagem);
+    });
+  }
+
+    
   useEffect(() => {
     async function loadPersonagens() {
       const response = await api.get('people');
-      setPersonagens([...personagens, response.data.results]);
-    console.log(response.data.results);
+        console.log(response.data.results)
+      
+      const listaPersonagens = response.data.results
+
+      setPersonagens(response.data.results);
     }
     loadPersonagens();
+    filtrarPersonagens(personagens);
   }, [])
   return (
     <div id="app">
       <main>
         <ul>
          {personagens.map((personagem, index) => (
-            <Personagem key={index} nome={personagem.name} cor={personagem.eye_color}/>
+            <Personagem key={index} personagem={personagem}/>
           ))}
         </ul>
       </main>
