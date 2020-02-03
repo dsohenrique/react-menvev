@@ -5,7 +5,7 @@ function Personagem({personagem}) {
         <li className="personagem">
             <header>
                 <div className="personagem-info">
-                    <strong>{personagem.name}</strong>
+                    <strong style={{color: personagem.eye_color}}>{personagem.name}</strong>
                 </div>
             </header>
         </li>
