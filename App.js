@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import Personagem from "./components/personagem";
+import OptionPersonagem from "./components/option-personagem";
 import api from "./service/api";
 
 class App extends Component {
@@ -28,36 +29,35 @@ class App extends Component {
       <div id="app">
         <main>
           <ul>
-            {this.state.personagens
+            {
+              this.state.personagens
               .sort((a, b) => a.name > b.name == 1)
               .map((personagem, index) => (
                 <Personagem
-                  key={index}
+                  id={index}
                   click={() => this.deletaPersonagemHandler(index)}
                   nome={personagem.name}
                   cor={personagem.eye_color}
                 />
-              ))}
+              ))
+            }
           </ul>
         </main>
+        <select id="selectFruit" className="form-control">
+          <option value="">Deletar Personagem</option>
+          {
+            this.state.personagens
+            .map((personagem, index) => (
+                <OptionPersonagem
+                  id={index}
+                  click={() => this.deletaPersonagemHandler(index)}
+                  nome ={ personagem.name }
+                />
+              ))
+          }
+        </select>
       </div>
     );
   }
 }
-
-class Personagem extends Component {
-  render() {
-    return (
-      <li className="personagem" key={this.props.key}>
-        <div className="personagem-info">
-          <strong style={{ color: this.props.cor }}>{this.props.nome}</strong>
-        </div>
-        <div className="personagem-buttons">
-          <button onClick={this.props.click}>Excluir</button>
-        </div>
-      </li>
-    );
-  }
-}
-
 export default App;

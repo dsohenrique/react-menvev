@@ -1,22 +1,18 @@
 import React, { Component } from "react";
 
-class Personagens extends Component {
-
+class Personagem extends Component {
   render() {
     return (
-      <ul>
-        {this.props.personagens
-          .sort((a, b) => a.name > b.name == 1)
-          .map((personagem, index) => (
-            <li className="personagem" key={index}>
-              <div className="personagem-info">
-                <strong style={{ color: personagem.eye_color }}>
-                  {personagem.name}
-                </strong>
-              </div>
-            </li>
-          ))}
-      </ul>
+      <li className="personagem" key={this.props.id}>
+        <div className="personagem-info">
+          <strong style={{ color: this.props.cor }}>{this.props.nome}</strong>
+        </div>
+        <div className="personagem-buttons">
+          <button onClick={this.props.click}>Excluir</button>
+        </div>
+      </li>
     );
   }
 }
+
+export default Personagem;
