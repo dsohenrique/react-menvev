@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      personagens: [],
+      personagens: []
     };
   }
 
@@ -19,7 +19,6 @@ class App extends Component {
     this.setState({ personagens: personagens });
   };
 
-
   async componentDidMount() {
     await api.get("people").then(response => {
       this.setState({ personagens: response.data.results });
@@ -27,19 +26,17 @@ class App extends Component {
   }
 
   render() {
-    const { personagens } = this.state;
     return (
       <div id="app">
+        <div className="grid">
           <select className="select-personagem card">
             <option>Deletar Personagem</option>
             {this.state.personagens.map((personagem, index) => (
-              <OptionPersonagem
-                id={index}
-                click={() => this.deletaPersonagemHandler(index)}
-                nome={personagem.name}
-              />
+              <OptionPersonagem id={index} nome={personagem.name} />
             ))}
           </select>
+          <button>Excluir Personagem</button>
+        </div>
         <main>
           <ul className="grid">
             {this.state.personagens
