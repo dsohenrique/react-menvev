@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      personagens: []
+      personagens: [],
     };
   }
 
@@ -18,6 +18,7 @@ class App extends Component {
     personagens.splice(indexPersonagem, 1);
     this.setState({ personagens: personagens });
   };
+
 
   async componentDidMount() {
     await api.get("people").then(response => {
