@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Personagem from "./components/personagem";
 import OptionPersonagem from "./components/option-personagem";
 import api from "./service/api";
+import "./global.css";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -28,9 +30,18 @@ class App extends Component {
     return (
       <div id="app">
         <main>
+          <select className="">
+            <option>Deletar Personagem</option>
+            {this.state.personagens.map((personagem, index) => (
+              <OptionPersonagem
+                id={index}
+                click={() => this.deletaPersonagemHandler(index)}
+                nome={personagem.name}
+              />
+            ))}
+          </select>
           <ul>
-            {
-              this.state.personagens
+            {this.state.personagens
               .sort((a, b) => a.name > b.name == 1)
               .map((personagem, index) => (
                 <Personagem
@@ -39,25 +50,12 @@ class App extends Component {
                   nome={personagem.name}
                   cor={personagem.eye_color}
                 />
-              ))
-            }
+              ))}
           </ul>
         </main>
-        <select id="selectFruit" className="form-control">
-          <option value="">Deletar Personagem</option>
-          {
-            this.state.personagens
-            .map((personagem, index) => (
-                <OptionPersonagem
-                  id={index}
-                  click={() => this.deletaPersonagemHandler(index)}
-                  nome ={ personagem.name }
-                />
-              ))
-          }
-        </select>
       </div>
     );
   }
 }
+
 export default App;

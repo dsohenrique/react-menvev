@@ -1,0 +1,14 @@
+div#app{
+  margin: 0 auto;
+  width: 50%;
+  background-color: #ffff;
+  border: solid #dadce0 2px;
+  border-radius: 10px;
+}
+
+@media(max-width: 768px){
+ #app{
+  background-color:red;
+  align-items: flex-start;
+  }
+}

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import './styles.css';
 
 class Personagem extends Component {
   render() {
     return (
-      <li className="personagem" key={this.props.id}>
+      <li className="personagem-card grid-container" key={this.props.id}>
         <div className="personagem-info">
           <strong style={{ color: this.props.cor }}>{this.props.nome}</strong>
         </div>
