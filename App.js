@@ -18,7 +18,6 @@ class App extends Component {
   changeHandler = e => {
     console.log(e.target.value);
     this.setState({indexSelecionado: e.target.value});
-
   };
 
   deletaPersonagemHandler = indexPersonagem => {
@@ -37,7 +36,7 @@ class App extends Component {
     return (
       <div id="app">
         <div className="grid">
-          <select className="select-personagem card">
+          <select onchange={this.changeHandler} className="select-personagem card" >
             <option>SELECIONE UM PERSONAGEM</option>
             {this.state.personagens.map((personagem, index) => (
               <OptionPersonagem id={index} nome={personagem.name} />
