@@ -29,8 +29,7 @@ class App extends Component {
     const { personagens } = this.state;
     return (
       <div id="app">
-        <main>
-          <select className="">
+          <select className="select-personagem card">
             <option>Deletar Personagem</option>
             {this.state.personagens.map((personagem, index) => (
               <OptionPersonagem
@@ -40,7 +39,8 @@ class App extends Component {
               />
             ))}
           </select>
-          <ul>
+        <main>
+          <ul className="grid">
             {this.state.personagens
               .sort((a, b) => a.name > b.name == 1)
               .map((personagem, index) => (
@@ -57,5 +57,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
