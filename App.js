@@ -16,7 +16,6 @@ class App extends Component {
 
   
   changeHandler = e => {
-    console.log(e.target.value);
     this.setState({indexSelecionado: e.target.value});
   };
 
