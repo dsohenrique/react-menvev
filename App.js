@@ -9,9 +9,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      personagens: []
+      personagens: [],
+      indexSelecionado: ''
     };
   }
+
+  
+  changeHandler = e => {
+    console.log(e.target.value);
+    this.setState({indexSelecionado: e.target.value});
+
+  };
 
   deletaPersonagemHandler = indexPersonagem => {
     const personagens = this.state.personagens;
@@ -30,12 +38,12 @@ class App extends Component {
       <div id="app">
         <div className="grid">
           <select className="select-personagem card">
-            <option>Deletar Personagem</option>
+            <option>SELECIONE UM PERSONAGEM</option>
             {this.state.personagens.map((personagem, index) => (
               <OptionPersonagem id={index} nome={personagem.name} />
             ))}
           </select>
-          <button>Excluir Personagem</button>
+          <button className="btn-excluir">Excluir Personagem</button>
         </div>
         <main>
           <ul className="grid">
